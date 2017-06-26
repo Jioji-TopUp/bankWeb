@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+	<form-beans>
+		<form-bean name="bnkBankForm"
+		 type="cn.com.ultrawise.bank.bnk.webapp.form.BnkBankForm"/>
+	</form-beans>
+
+	<global-exceptions>
+		<exception type="java.lang.Exception" key="errors.general"
+			handler="cn.com.ultrawise.bank.webapp.action.ActionExceptionHandler" />
+	</global-exceptions>
+
+	<global-forwards></global-forwards>
+
+	<action-mappings>
+		<action path="\bank" 
+		name="cn.com.ultrawise.bank.bnk.webapp.action.BnkBankAction"
+		type="bnkBankForm">
+			<forward name="list" path="\bankDis.jsp" />
+			<forward name="query" path="\bankEnq.jsp" />
+		</action>
+	</action-mappings>
+	<controller>
+		<set-property property="processorClass"
+			value="org.springframework.web.struts.DelegatingRequestProcessor" />
+	</controller>
+	<message-resources parameter="ApplicationResources" />
+
+	<plug-in
+		className="org.springframework.web.struts.ContextLoaderPlugIn" />
+
+</struts-config>
